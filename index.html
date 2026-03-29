@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>D's Long Island Junk Removal & Demolition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #C8102E;
+      --red-dark: #9B0B22;
+      --red-light: #E8294A;
+      --white: #FFFFFF;
+      --off-white: #F5F5F5;
+      --gray: #888;
+      --dark: #111;
+      --stripe: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 8px,
+        rgba(200,16,46,0.07) 8px,
+        rgba(200,16,46,0.07) 16px
+      );
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      background: var(--red);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    .topbar .hours { opacity: 0.92; }
+    .topbar .sep { opacity: 0.5; margin: 0 12px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(200,16,46,0.85) 0%, rgba(0,0,0,0.92) 55%),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+      z-index: 0;
+    }
+    .hero-stripe {
+      position: absolute;
+      inset: 0;
+      background: var(--stripe);
+      z-index: 1;
+      opacity: 0.4;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 40px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: white;
+      padding: 6px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      width: fit-content;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero h1 {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      color: white;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 span { color: var(--red-light); }
+    .hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      animation: fadeUp 0.6s 0.35s ease both;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      padding: 16px 36px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      padding: 16px 36px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 8px;
+      animation: fadeUp 0.6s 0.45s ease both;
+    }
+    .hero-stat strong {
+      display: block;
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: 2.2rem;
+      color: var(--red-light);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .hero-diagonal {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: var(--white);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      z-index: 3;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 90px 40px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--red);
+    }
+    h2 {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      color: var(--dark);
+    }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--off-white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      margin-top: 50px;
+      background: var(--red);
+      border: 2px solid var(--red);
+    }
+    .service-card {
+      background: white;
+      padding: 36px 28px;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover { background: var(--red); color: white; }
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .service-card:hover p { color: rgba(255,255,255,0.8); }
+
+    /* ─── WHY US ─── */
+    .why-us { background: white; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .why-list { display: flex; flex-direction: column; gap: 28px; }
+    .why-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .why-num {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: 3rem;
+      color: var(--red);
+      line-height: 1;
+      min-width: 50px;
+      opacity: 0.2;
+    }
+    .why-item h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+    .why-item p { font-size: 0.92rem; color: var(--gray); line-height: 1.6; }
+    .why-visual {
+      background: var(--red);
+      color: white;
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+    }
+    .why-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--stripe);
+      opacity: 0.25;
+    }
+    .why-visual-inner { position: relative; z-index: 1; }
+    .why-visual h3 {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .why-visual p { font-size: 1rem; line-height: 1.7; opacity: 0.85; margin-bottom: 28px; }
+    .why-visual .big-num {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: 5rem;
+      opacity: 0.15;
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      line-height: 1;
+    }
+
+    /* ─── AREAS ─── */
+    .areas { background: var(--dark); color: white; }
+    .areas h2 { color: white; }
+    .areas .section-label { color: var(--red-light); }
+    .areas .section-label::before { background: var(--red-light); }
+    .areas-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .area-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.75);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .area-tag:hover { background: var(--red); border-color: var(--red); color: white; }
+    .area-tag.highlight { background: var(--red); border-color: var(--red); color: white; }
+
+    /* ─── CTA STRIP ─── */
+    .cta-strip {
+      background: var(--red);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--stripe);
+      opacity: 0.2;
+    }
+    .cta-strip-inner { position: relative; z-index: 1; }
+    .cta-strip h2 {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: white;
+      margin-bottom: 10px;
+    }
+    .cta-strip p { font-size: 1.1rem; opacity: 0.85; margin-bottom: 30px; }
+    .cta-phone {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+    .cta-phone:hover { opacity: 0.85; }
+
+    /* ─── CONTACT / FOOTER ─── */
+    .contact { background: var(--off-white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 50px;
+    }
+    .contact-info h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--red);
+    }
+    .info-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    .info-icon { font-size: 1.3rem; min-width: 28px; }
+    .info-row strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 2px; }
+    .info-row a { color: var(--dark); text-decoration: none; font-weight: 600; }
+    .info-row a:hover { color: var(--red); }
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 30px 40px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    footer span { color: var(--red); }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: white;
+      border-bottom: 3px solid var(--red);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .nav-logo {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: 1.3rem;
+      color: var(--red);
+      padding: 18px 0;
+      text-decoration: none;
+      line-height: 1.1;
+    }
+    .nav-logo small {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      color: var(--gray);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); border-bottom-color: var(--red); }
+    .nav-cta {
+      background: var(--red);
+      color: white !important;
+      padding: 10px 22px !important;
+      border-bottom: none !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--red-dark) !important; color: white !important; border-bottom-color: transparent !important; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .topbar { flex-direction: column; gap: 4px; padding: 10px 20px; text-align: center; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .hero-content { padding: 60px 20px 50px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div>
+    📍 Calverton, New York &mdash; Serving All of Long Island
+  </div>
+  <div style="display:flex;align-items:center;gap:4px;">
+    <span class="hours">🕖 Mon–Sun &nbsp;7:00 AM – 9:00 PM</span>
+    <span class="sep">|</span>
+    <a href="tel:6313035348">📞 (631) 303-5348</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    D's Junk Removal
+    <small>& Demolition &mdash; Long Island</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#areas">Service Area</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:6313035348" class="nav-cta">Call Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Same-Day Service Available</div>
+    <h1>HAUL IT.<br><span>WRECK IT.</span><br>DONE.</h1>
+    <p class="hero-sub">Long Island's #1 Junk Removal & Demolition — Calverton, NY</p>
+    <div class="hero-ctas">
+      <a href="tel:6313035348" class="btn-primary">📞 Call (631) 303-5348</a>
+      <a href="#services" class="btn-outline">See Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>7AM</strong><span>Early Start</span></div>
+      <div class="hero-stat"><strong>9PM</strong><span>Late Finish</span></div>
+      <div class="hero-stat"><strong>7 Days</strong><span>A Week</span></div>
+      <div class="hero-stat"><strong>100%</strong><span>Local & Reliable</span></div>
+    </div>
+  </div>
+  <div class="hero-diagonal"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2>FULL-SERVICE REMOVAL<br>& DEMOLITION</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <h3>Residential Junk Removal</h3>
+        <p>Clearing out your home, attic, basement, or garage? We haul away furniture, appliances, electronics, and more — fast and hassle-free.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏗️</span>
+        <h3>Interior Demolition</h3>
+        <p>Walls, kitchens, bathrooms, decks — we take it apart cleanly and efficiently so your renovation can start without delay.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚛</span>
+        <h3>Construction Debris</h3>
+        <p>Post-renovation cleanup, concrete, drywall, lumber, roofing materials — we handle the heavy lifting so contractors can keep moving.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏢</span>
+        <h3>Commercial Cleanouts</h3>
+        <p>Office purges, retail buildouts, warehouse cleanouts — efficient commercial service that works around your schedule.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <h3>Yard & Property Cleanup</h3>
+        <p>Brush, branches, old fencing, sheds, hot tubs — if it's on your property and you want it gone, we remove it.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔨</span>
+        <h3>Shed & Structure Demo</h3>
+        <p>Old sheds, gazebos, decks, and outbuildings safely torn down and carted away. Leave the site broom-clean.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">♻️</span>
+        <h3>Estate Cleanouts</h3>
+        <p>Sensitive and respectful estate clearance. We sort, donate, recycle, and dispose of items responsibly.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🛋️</span>
+        <h3>Furniture & Appliance Removal</h3>
+        <p>Single items or full loads — couches, refrigerators, washers, mattresses — picked up from inside or curbside.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="why-us">
+  <div class="container">
+    <div class="section-label">Why Choose Us</div>
+    <h2>THE D'S DIFFERENCE</h2>
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div>
+            <h4>Upfront Pricing — No Surprises</h4>
+            <p>We give you a clear quote before we start. No hidden fees, no upsells at the door.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div>
+            <h4>Same-Day & Next-Day Availability</h4>
+            <p>When you need junk gone NOW, we show up. 7 days a week, 7AM to 9PM.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div>
+            <h4>Locally Owned & Operated</h4>
+            <p>We're your Long Island neighbors — based in Calverton and proud of it. Your money stays local.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <div>
+            <h4>Full-Service — You Don't Lift a Finger</h4>
+            <p>We carry everything from inside your home. All you do is point at it.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">05</div>
+          <div>
+            <h4>Eco-Conscious Disposal</h4>
+            <p>We recycle, donate, and dispose of materials responsibly whenever possible.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual">
+        <div class="why-visual-inner">
+          <h3>CALL US.<br>WE'LL HANDLE<br>THE REST.</h3>
+          <p>Whether it's a single couch or a full house cleanout, D's Long Island Junk Removal has the crew, trucks, and muscle to get it done right — today.</p>
+          <a href="tel:6313035348" class="btn-primary" style="background:white;color:var(--red);">📞 (631) 303-5348</a>
+        </div>
+        <div class="big-num">D's</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="areas" id="areas">
+  <div class="container">
+    <div class="section-label">Where We Work</div>
+    <h2>SERVING ALL OF<br>LONG ISLAND</h2>
+    <div class="areas-list">
+      <span class="area-tag highlight">📍 Calverton</span>
+      <span class="area-tag">Riverhead</span>
+      <span class="area-tag">Brookhaven</span>
+      <span class="area-tag">Smithtown</span>
+      <span class="area-tag">Huntington</span>
+      <span class="area-tag">Hauppauge</span>
+      <span class="area-tag">Patchogue</span>
+      <span class="area-tag">Islip</span>
+      <span class="area-tag">Bohemia</span>
+      <span class="area-tag">Medford</span>
+      <span class="area-tag">Yaphank</span>
+      <span class="area-tag">Center Moriches</span>
+      <span class="area-tag">East Moriches</span>
+      <span class="area-tag">Manorville</span>
+      <span class="area-tag">Shirley</span>
+      <span class="area-tag">Mastic</span>
+      <span class="area-tag">Bay Shore</span>
+      <span class="area-tag">Coram</span>
+      <span class="area-tag">Middle Island</span>
+      <span class="area-tag">Port Jefferson</span>
+      <span class="area-tag">& More</span>
+    </div>
+  </div>
+</section>
+
+<!-- BIG CTA STRIP -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2>READY TO CLEAR IT OUT?</h2>
+    <p>Call us today — we pick up 7 days a week, 7AM to 9PM.</p>
+    <a href="tel:6313035348" class="cta-phone">(631) 303-5348</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2>CONTACT US</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Reach D's Directly</h3>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <strong>Phone</strong>
+            <a href="tel:6313035348">(631) 303-5348</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <strong>Based In</strong>
+            <span>Calverton, New York</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🕖</div>
+          <div>
+            <strong>Hours</strong>
+            <span>Monday – Sunday, 7:00 AM to 9:00 PM</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🚛</div>
+          <div>
+            <strong>Service Area</strong>
+            <span>All of Long Island, NY</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⚡</div>
+          <div>
+            <strong>Same-Day Service</strong>
+            <span>Available — Call to Confirm</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-info">
+        <h3>Why Call Today?</h3>
+        <p style="line-height:1.8;color:var(--gray);margin-bottom:24px;">No online forms or waiting — just call us directly and we'll get you a fast, free estimate on the spot. Most jobs can be scheduled within 24 hours.</p>
+        <a href="tel:6313035348" class="btn-primary" style="font-size:1.2rem;padding:20px 44px;">📞 Call (631) 303-5348</a>
+        <p style="font-size:0.82rem;color:var(--gray);margin-top:16px;letter-spacing:0.05em;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;">Free Estimates · No Obligation · Local &amp; Reliable</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>D's Long Island Junk Removal & Demolition</span> · Calverton, NY · <a href="tel:6313035348" style="color:inherit;">(631) 303-5348</a></p>
+</footer>
+
+</body>
+</html>
